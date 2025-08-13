@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Employee>
+
+<h1>الموظفين والعهدة</h1>
+<p><a asp-action="Create">إضافة موظف جديد</a></p>
+
+<table class="table">
+    <thead>
+        <tr><th>الاسم</th><th>البريد</th><th>العهدة</th><th>الإجراءات</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Name</td>
+                <td>@emp.Email</td>
+                <td>
+                    @if (emp.Assets != null && emp.Assets.Any())
+                    {
+                        <ul>
+                            @foreach (var asset in emp.Assets)
+                            {
+                                <li>@asset.Type - @asset.Model (تعيين: @asset.AssignedDate:yyyy-MM-dd)</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <span>—</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@emp.Id">تعديل</a> |
+                    <a asp-action="Delete" asp-route-id="@emp.Id">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

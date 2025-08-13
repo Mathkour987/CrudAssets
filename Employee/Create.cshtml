@@ -1,0 +1,19 @@
+﻿@model Employee
+
+<h1>إضافة موظف جديد</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+    </div>
+    <div>
+        <label asp-for="JobTitle"></label>
+        <input asp-for="JobTitle" />
+    </div>
+    <button type="submit">حفّظ</button>
+</form>
